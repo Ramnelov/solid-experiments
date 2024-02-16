@@ -35,21 +35,12 @@ function LoginComponent() {
         console.log(err);
       },
       newPasswordRequired: function(userAttributes, requiredAttributes) {
-        // User was signed up by an admin and must provide new 
-        // password and required attributes, if any, to complete 
-        // authentication.
       
-        // You can ask the user to provide a new password using a prompt, a modal, etc.
-        // For simplicity, we'll just use a JavaScript prompt here.
         const prompt = require('prompt-sync')({sigint: true});
 
         const newPassword = prompt('Please enter a new password', {echo: '*'});
       
-        // The userAttributes parameter contains the attributes of the Cognito user.
-        // The requiredAttributes parameter contains any attributes that must be updated along with the password.
-        // In this case, we'll assume there are no required attributes.
       
-        // Remove the email attribute
         delete userAttributes.email;
       
         cognitoUser.completeNewPasswordChallenge(newPassword, userAttributes, {
