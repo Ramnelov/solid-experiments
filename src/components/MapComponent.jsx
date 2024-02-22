@@ -1,11 +1,13 @@
-import { onMount } from 'solid-js';
+import { onMount } from "solid-js";
 
 function MapComponent() {
   let map;
 
   onMount(() => {
-    const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${import.meta.env.VITE_GOOGLE_MAPS_API_KEY}&callback=initMap`;
+    const script = document.createElement("script");
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${
+      import.meta.env.VITE_GOOGLE_MAPS_API_KEY
+    }&callback=initMap`;
     script.async = true;
     window.initMap = initMap;
     document.body.appendChild(script);
@@ -17,18 +19,18 @@ function MapComponent() {
 
   const initMap = () => {
     const locations = [
-      { lat: -34.397, lng: 150.644, color: 'red', label: 'Label 1' },
-      { lat: -34.497, lng: 150.744, color: 'blue', label: 'Label 2' },
+      { lat: -34.397, lng: 150.644, color: "red", label: "Label 1" },
+      { lat: -34.497, lng: 150.744, color: "blue", label: "Label 2" },
       // add more locations as needed
     ];
-  
-    map = new google.maps.Map(document.getElementById('map'), {
+
+    map = new google.maps.Map(document.getElementById("map"), {
       center: locations[0],
       zoom: 8,
     });
-  
-    map.addListener('tilesloaded', () => {
-      locations.forEach(location => {
+
+    map.addListener("tilesloaded", () => {
+      locations.forEach((location) => {
         new google.maps.Marker({
           position: location,
           map: map,
@@ -38,16 +40,14 @@ function MapComponent() {
           label: {
             text: location.label,
             color: location.color,
-            fontSize: '16px',
+            fontSize: "16px",
           },
         });
       });
     });
   };
 
-  return (
-    <div id="map" style="height: 400px; width: 100%;"></div>
-  );
+  return <div id="map" style="height: 400px; width: 100%;"></div>;
 }
 
 export default MapComponent;
