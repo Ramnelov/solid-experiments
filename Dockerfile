@@ -1,6 +1,4 @@
-# Dockerfile
-
-# Use Node.js version 18-alpine as a base image
+# Use the official Node.js 18 Alpine image
 FROM node:18-alpine
 
 # Set the working directory in the container
@@ -9,14 +7,14 @@ WORKDIR /app
 # Copy package.json and package-lock.json to the container
 COPY package*.json ./
 
-# Install app dependencies
+# Install dependencies
 RUN npm install
 
-# Copy the rest of the app files to the container
+# Copy the rest of the application code to the container
 COPY . .
 
-# Expose port 3000
+# Expose the port your app runs on
 EXPOSE 3000
 
-# Command to run your app
-CMD [ "npm", "run", "dev" ]
+# Command to run your application
+CMD ["npm", "run", "dev-exposed"]

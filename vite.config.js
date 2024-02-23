@@ -9,7 +9,11 @@ export default defineConfig({
   ],
   server: {
     port: 3000,
-    host: true,
+    hmr: true,
+    watch: {
+      usePolling: true,
+      //interval: 100,
+    },
   },
   build: {
     target: 'esnext',
