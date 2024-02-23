@@ -4,6 +4,7 @@ import HomeView from "./views/HomeView";
 import DroneView from "./views/DroneView";
 import MapComponent from "./components/MapComponent";
 import LoginComponent from "./components/LoginComponent";
+import PlaceComponent from "./components/PlaceComponent";
 
 const App = () => {
   let intervalId;
@@ -21,10 +22,11 @@ const App = () => {
 
   return (
     <>
-      <h1>My Site with lots of tests</h1>
+      <h1>blabla</h1>
       <Router>
         <Route path="/" component={HomeView} />
         <Route path="/map" component={MapComponent} />
+        <Route path="/place" component={PlaceComponent} />
         <Route path="/login" component={LoginComponent} />
         <Route path="/:id" component={DroneView} />
       </Router>

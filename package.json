@@ -19,6 +19,7 @@
   "dependencies": {
     "@solidjs/router": "^0.12.4",
     "amazon-cognito-identity-js": "^6.3.7",
+    "axios": "^1.6.7",
     "prompt-sync": "^4.2.0",
     "solid-js": "^1.8.11"
   }

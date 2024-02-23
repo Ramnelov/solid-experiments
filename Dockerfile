@@ -1,3 +1,5 @@
+# Dockerfile
+
 # Use the official Node.js 18 Alpine image
 FROM node:18-alpine
 
@@ -18,4 +20,4 @@ COPY . .
 EXPOSE 3000
 
 # Command to run your application
-CMD ["npm", "run", "dev-exposed"]
+CMD ["npm", "run", "dev"]
