@@ -21,7 +21,7 @@ const App = () => {
 
   return (
     <>
-      <h1>My Site with lots of tes</h1>
+      <h1>My Site with lots of tests</h1>
       <Router>
         <Route path="/" component={HomeView} />
         <Route path="/map" component={MapComponent} />

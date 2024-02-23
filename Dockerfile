@@ -2,10 +2,11 @@
 FROM node:18-alpine
 
 # Set the working directory in the container
-WORKDIR /app
+WORKDIR /usr/src/app
 
 # Copy package.json and package-lock.json to the container
-COPY package*.json ./
+COPY ./package.json .
+COPY ./package-lock.json .
 
 # Install dependencies
 RUN npm install
