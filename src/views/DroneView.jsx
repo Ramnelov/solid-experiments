@@ -1,17 +1,38 @@
-import { createSignal, onMount } from 'solid-js';
-import { useNavigate } from '@solidjs/router';
+import { createSignal, onMount, onCleanup } from "solid-js";
+import { useNavigate, useParams } from "@solidjs/router";
 
-const DroneView = ({ params }) => {
+import droneData from "../api/drone-data.json";
+
+const DroneView = () => {
   // State to hold the ID
-  const [id, setId] = createSignal(params.id);
+  const [id, setId] = createSignal(useParams().id);
+  const [data, setData] = createSignal();
   const navigate = useNavigate();
 
-  const ids = ['id1', 'id2', 'id3', 'id4', 'id5'];
+  let intervalId;
 
   onMount(() => {
-    if (!ids.includes(id())) {
+
+    const drone = droneData.find(drone => drone.id === +id());
+
+    if (!drone) {
       navigate('/');
+      return;
     }
+
+    setData(drone);
+    console.log(data());
+
+    
+
+    intervalId = setInterval(() => {
+      setData(droneData.find(drone => drone.id === +id()));
+      console.log(data());
+    }, 10000);
+  });
+
+  onCleanup(() => {
+    clearInterval(intervalId);
   });
 
   return (

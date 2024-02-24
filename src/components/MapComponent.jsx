@@ -1,51 +1,44 @@
-import { onMount } from "solid-js";
+import { onMount, createEffect } from "solid-js";
 
-function MapComponent() {
+function MapComponent({ initialCenter, initialZoom, markerPosition }) {
   let map;
+  let marker = null;
+
+  const initMap = async () => {
+    const mapElement = document.getElementById("map");
+    if (mapElement) {
+      map = new google.maps.Map(mapElement, {
+        center: initialCenter,
+        zoom: initialZoom,
+        mapId: import.meta.env.VITE_GOOGLE_MAPS_MAP_ID,
+      });
+
+      marker = new google.maps.Marker({
+        position: markerPosition(),
+        map: map,
+      });
+
+      createEffect(() => {
+        if (marker) {
+          marker.setPosition(markerPosition());
+        }
+      });
+    }
+  };
 
   onMount(() => {
+    window.initMap = initMap;
+
     const script = document.createElement("script");
     script.src = `https://maps.googleapis.com/maps/api/js?key=${
       import.meta.env.VITE_GOOGLE_MAPS_API_KEY
-    }&callback=initMap`;
+    }&libraries=marker&callback=initMap`;
     script.async = true;
-    window.initMap = initMap;
+    script.defer = true;
     document.body.appendChild(script);
-
-    return () => {
-      window.initMap = undefined;
-    };
   });
 
-  const initMap = () => {
-    const locations = [
-      { lat: -34.397, lng: 150.644, color: "red", label: "Label 1" },
-      { lat: -34.497, lng: 150.744, color: "blue", label: "Label 2" },
-      // add more locations as needed
-    ];
-
-    map = new google.maps.Map(document.getElementById("map"), {
-      center: locations[0],
-      zoom: 8,
-    });
-
-    map.addListener("tilesloaded", () => {
-      locations.forEach((location) => {
-        new google.maps.Marker({
-          position: location,
-          map: map,
-          icon: {
-            url: `http://maps.google.com/mapfiles/ms/icons/${location.color}-dot.png`,
-          },
-          label: {
-            text: location.label,
-            color: location.color,
-            fontSize: "16px",
-          },
-        });
-      });
-    });
-  };
+  
 
   return <div id="map" style="height: 400px; width: 100%;"></div>;
 }
