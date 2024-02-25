@@ -1,10 +1,11 @@
+# docker-compose.yml
+
 version: '3.8'
 services:
-  solid-app:
+  vite-application:
     build:
       context: .
       dockerfile: Dockerfile
-    #image: vite_docker_image
     stdin_open: true
     ports:
       - "3000:3000"
