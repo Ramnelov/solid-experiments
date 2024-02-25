@@ -2,17 +2,19 @@
 
 Project to experiment with the Javascript framework Solid for my bachelor project in Computer Science and Engineering.
 
-## Get startet
+## Get started
 
-To run the project, first build the docker image:
+To run the project, first build the Docker image:
 
 ```bash
-docker build -t vite_docker_image .
+docker-compose build
 ```
 
 Then run a container with the image:
 
 
 ```bash
-docker-compose up.
+docker-compose up
 ```
+
+Then you can access the app at: 'http://localhost:3000/'

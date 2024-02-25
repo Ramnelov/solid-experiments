@@ -1,7 +1,7 @@
 
 function HomeView() {
   return (
-    <p>Homeeee</p>
+    <p>Home</p>
   );
 }
 
