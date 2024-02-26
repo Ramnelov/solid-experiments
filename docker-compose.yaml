@@ -2,10 +2,33 @@
 
 version: '3.8'
 services:
-  vite-application:
+  dev:
     build:
       context: .
       dockerfile: Dockerfile
+    command: npm run dev
+    stdin_open: true
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./:/usr/src/app:delegated"
+      - /usr/src/app/node_modules
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: npm run test
+    stdin_open: true
+    ports:
+      - "3000:3000"
+    volumes:
+      - "./:/usr/src/app:delegated"
+      - /usr/src/app/node_modules
+  build:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: npm run build
     stdin_open: true
     ports:
       - "3000:3000"

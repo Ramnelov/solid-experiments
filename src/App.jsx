@@ -11,7 +11,7 @@ const App = () => {
 
   return (
     <>
-      <h1>Solid experiments</h1>
+      <h1>Solid experiment</h1>
       <Router>
         <Route path="/" component={HomeView} />
         <Route path="/map" component={MapView} />

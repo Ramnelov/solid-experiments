@@ -21,4 +21,5 @@ export default defineConfig({
     'process.env': {},
     global: {},
   },
+  testDir: 'test',
 });
